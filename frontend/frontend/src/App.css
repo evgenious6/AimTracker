@@ -1,20 +1,26 @@
-/* Общие настройки страницы */
+/* =========================================
+   1. ОБЩИЕ СТИЛИ СТРАНИЦЫ (Темная тема)
+   ========================================= */
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: #121212; /* Темный фон для всего сайта */
+  color: #ffffff; /* Белый текст по умолчанию */
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Контейнер для входа/регистрации */
+/* =========================================
+   2. СТИЛИ ДЛЯ ВХОДА И РЕГИСТРАЦИИ
+   ========================================= */
 .auth-container {
-  background: white;
+  background: #1e1e1e; /* Темно-серый фон карточки */
   padding: 40px;
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   width: 100%;
   max-width: 400px;
   text-align: center;
@@ -23,70 +29,20 @@ body {
 .auth-container h2 {
   margin-top: 0;
   margin-bottom: 24px;
-  color: #333;
+  color: #ffffff;
   font-size: 24px;
 }
 
-/* Контейнер для дашборда (после входа) */
-.dashboard-container {
-  background: white;
-  padding: 50px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Центрируем всё по горизонтали */
-}
-
-.dashboard-container h1 {
-  color: #2c3e50;
-  font-size: 32px; /* Уменьшили размер шрифта */
-  line-height: 1.3; /* Добавили межстрочный интервал, чтобы текст не наезжал */
-  margin-top: 0;
-  margin-bottom: 10px; /* Отступ между заголовком и текстом */
-  text-align: center;
-}
-
-.dashboard-container p {
-  color: #7f8c8d;
-  font-size: 18px;
-  line-height: 1.5;
-  margin-top: 0; /* Убираем верхний отступ, чтобы не было наложения */
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-/* Красиво выделяем email пользователя */
-.dashboard-container strong {
-  color: #4a90e2;
-  background-color: #eef4fc;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-weight: 600;
-  display: inline-block;
-  margin-top: 5px;
-}
-
-/* Поля ввода */
-.input-group {
-  margin-bottom: 20px;
-  text-align: left;
-}
-
 .input-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #555;
-  font-size: 14px;
+  color: #aaaaaa; /* Светло-серый для подписей */
 }
 
 .input-group input {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #e0e0e0;
+  background: #2a2a2a; /* Темный фон для полей ввода */
+  border: 2px solid #333333;
+  color: #ffffff;
   border-radius: 10px;
   font-size: 16px;
   box-sizing: border-box;
@@ -98,8 +54,7 @@ body {
   border-color: #4a90e2;
 }
 
-/* Кнопки */
-.login-btn, .logout-btn {
+.login-btn {
   width: 100%;
   padding: 14px;
   background-color: #4a90e2;
@@ -113,32 +68,166 @@ body {
   margin-top: 10px;
 }
 
-.login-btn:hover, .logout-btn:hover {
+.login-btn:hover {
   background-color: #357abd;
 }
 
-.login-btn:active, .logout-btn:active {
-  transform: scale(0.98);
+.error-message {
+  background-color: #4a1c1c;
+  color: #ff6b6b;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border-left: 4px solid #ff6b6b;
+  text-align: left;
+}
+
+.auth-container > button {
+  margin-top: 15px;
+  background: none;
+  border: none;
+  color: #4a90e2;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+/* =========================================
+   3. СТИЛИ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ (ДАШБОРДА)
+   ========================================= */
+.dashboard-container {
+  background: #1e1e1e; /* Темный фон рабочей области */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Верхняя панель */
+.dashboard-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 40px;
+  gap: 20px;
+  border-bottom: 1px solid #333333; /* Темная граница */
+}
+
+.profile-icon {
+  font-size: 28px;
+  cursor: pointer;
+  background: #2a2a2a;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.profile-icon:hover {
+  transform: scale(1.1);
+  background: #333333;
 }
 
 .logout-btn {
   background-color: #e74c3c;
-  width: auto;
-  padding: 10px 24px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .logout-btn:hover {
   background-color: #c0392b;
 }
 
-/* Сообщение об ошибке */
-.error-message {
-  background-color: #ffeaea;
-  color: #e74c3c;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  border-left: 4px solid #e74c3c;
-  text-align: left;
+/* Основная рабочая область (Кнопки) */
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly; /* Равномерно распределяем кнопки */
+  align-items: center;
+  padding: 0 40px;
+}
+
+.action-btn {
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* Боковые кнопки (Сделали их больше) */
+.side-btn {
+  width: 280px;  /* Было 200px */
+  height: 200px; /* Было 150px */
+  font-size: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Красная кнопка (Завершенные) */
+.side-btn.completed {
+  background-color: #e74c3c;
+}
+.side-btn.completed:hover {
+  background-color: #c0392b;
+  transform: translateY(-5px);
+}
+
+/* Синяя кнопка (Активные) */
+.side-btn.active {
+  background-color: #3498db;
+}
+.side-btn.active:hover {
+  background-color: #2980b9;
+  transform: translateY(-5px);
+}
+
+/* Зеленая кнопка (Создать) */
+.create-btn {
+  background-color: #2ecc71;
+  padding: 50px 80px; /* Увеличили внутренние отступы */
+  font-size: 24px;    /* Увеличили шрифт */
+  box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+}
+
+.create-btn:hover {
+  background-color: #27ae60;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(46, 204, 113, 0.5);
+}
+
+.plus-icon {
+  font-size: 50px;
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+/* Нижняя панель (Мотивационная фраза) */
+.dashboard-footer {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #333333;
+  color: #888888;
+  font-style: italic;
+  font-size: 18px;
+  background-color: #1a1a1a;
+}
+
+.dashboard-footer p {
+  margin: 0;
 }

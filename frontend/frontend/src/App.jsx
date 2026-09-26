@@ -7,6 +7,16 @@ axios.defaults.withCredentials = true
 
 // Базовый адрес вашего бэкенда (порт 3000)
 const API_URL = '/api'
+// Массив мотивационных фраз
+const MOTIVATIONAL_QUOTES = [
+    "У тебя всё получится!",
+    "Ты справишься!",
+    "Верь в себя!",
+    "Маленькие шаги ведут к большим целям.",
+    "Сегодня отличный день, чтобы начать!",
+    "Твой успех зависит от тебя!",
+    "Не сдавайся, всё получится!"
+];
 
 function App() {
     const [email, setEmail] = useState('')
@@ -14,6 +24,7 @@ function App() {
     const [user, setUser] = useState(null)
     const [error, setError] = useState('')
     const [isRegistering, setIsRegistering] = useState(false);
+    const [quote, setQuote] = useState('');
 
     // Проверяем авторизацию при загрузке страницы
     useEffect(() => {
@@ -25,6 +36,11 @@ function App() {
             })
             .catch(err => console.log('Ошибка проверки сессии:', err))
     }, [])
+    // Выбираем случайную фразу при загрузке
+    useEffect(() => {
+        const randomIndex = Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length);
+        setQuote(MOTIVATIONAL_QUOTES[randomIndex]);
+    }, []);
 
     // Вход
     const handleLogin = (e) => {
@@ -90,9 +106,31 @@ function App() {
     if (user) {
         return (
             <div className="dashboard-container">
-                <h1>Добро пожаловать в Aim Tracker!</h1>
-                <p>Вы вошли как: <strong>{user.email}</strong></p>
-                <button onClick={handleLogout} className="logout-btn">Выйти</button>
+                <header className="dashboard-header">
+                    <div className="profile-icon" title={user.email}>
+                        👤
+                    </div>
+                    <button onClick={handleLogout} className="logout-btn">Выйти</button>
+                </header>
+
+                <main className="dashboard-main">
+                    <button className="action-btn side-btn completed">
+                        Завершённые цели
+                    </button>
+
+                    <button className="action-btn create-btn">
+                        <span className="plus-icon">+</span>
+                        Создать новую цель
+                    </button>
+
+                    <button className="action-btn side-btn active">
+                        Активные цели
+                    </button>
+                </main>
+
+                <footer className="dashboard-footer">
+                    <p>{quote}</p>
+                </footer>
             </div>
         )
     }
