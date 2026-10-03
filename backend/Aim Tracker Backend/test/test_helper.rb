@@ -4,12 +4,9 @@ require "rails/test_help"
 
 module ActiveSupport
   class TestCase
-    # Run tests in parallel with specified workers
-    parallelize(workers: :number_of_processors, with: :threads)
-
-    # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-    fixtures :all
-
-    # Add more helper methods to be used by all tests here...
+    # Отключаем автоматическую загрузку всех фикстур
+    self.fixture_paths = [] if respond_to?(:fixture_paths)
+    # Или так, для разных версий:
+    # self.fixture_path = nil
   end
 end
