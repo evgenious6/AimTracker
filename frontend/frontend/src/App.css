@@ -229,3 +229,30 @@ body {
 .dashboard-footer p {
   margin: 0;
 }
+/* Стили для модального окна */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
