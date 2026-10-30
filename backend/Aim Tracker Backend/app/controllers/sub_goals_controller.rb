@@ -17,6 +17,12 @@ class SubGoalsController < ApplicationController
       if goal
         sub_goal = goal.sub_goals.new(title: data['title'], completed: false)
         if sub_goal.save
+          # --- НОВЫЙ КОД: Отправляем сообщение о создании ---
+          ActionCable.server.broadcast("goal_updates_#{current_user.id}", {
+            type: 'sub_goal_created',
+            goal_id: goal.id,
+            sub_goal: sub_goal
+          })
           render json: { status: 'created', sub_goal: sub_goal }, status: :ok
         else
           render json: { errors: sub_goal.errors.full_messages }, status: :unprocessable_entity
@@ -44,6 +50,16 @@ class SubGoalsController < ApplicationController
 
       if sub_goal
         sub_goal.update(completed: !sub_goal.completed)
+
+        # --- НОВЫЙ КОД: Отправляем сообщение в WebSocket ---
+        ActionCable.server.broadcast("goal_updates_#{current_user.id}", {
+          type: 'sub_goal_toggled',
+          goal_id: sub_goal.goal_id,
+          progress: sub_goal.goal.progress,
+          sub_goal: sub_goal # <-- Отправляем ВЕСЬ объект подцели целиком
+        })
+        # ---------------------------------------------------
+
         render json: {
           sub_goal: sub_goal,
           goal_progress: sub_goal.goal.progress

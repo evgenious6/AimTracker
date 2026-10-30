@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
+import { createConsumer } from '@rails/actioncable';
+const cable = createConsumer('/cable');
 
 // Настраиваем axios, чтобы он передавал куки сессии на бэкенд
 axios.defaults.withCredentials = true
@@ -48,6 +50,74 @@ function App() {
     useEffect(() => {
         const randomIndex = Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length);
         setQuote(MOTIVATIONAL_QUOTES[randomIndex]);
+    }, []);
+    // Эффект для подключения к WebSocket (Action Cable)
+    useEffect(() => {
+        // Подписываемся на канал (cable мы создали один раз наверху файла)
+        const subscription = cable.subscriptions.create('GoalUpdatesChannel', {
+            received(data) {
+                // 1. Обработка события: ИЗМЕНЕНИЕ СТАТУСА ПОДЦЕЛИ (галочка)
+                if (data.type === 'sub_goal_toggled') {
+                    // Обновляем главный список целей (и прогресс, и подцели)
+                    setGoals(prevGoals =>
+                        prevGoals.map(goal =>
+                            goal.id === data.goal_id
+                                ? {
+                                    ...goal,
+                                    progress: data.progress,
+                                    // Обновляем массив подцелей внутри цели
+                                    sub_goals: goal.sub_goals.map(sg =>
+                                        sg.id === data.sub_goal.id ? data.sub_goal : sg
+                                    )
+                                }
+                                : goal
+                        )
+                    );
+
+                    // Обновляем открытую модалку (если она открыта для этой цели)
+                    setSelectedGoal(prevGoal => {
+                        if (prevGoal && prevGoal.id === data.goal_id) {
+                            return {
+                                ...prevGoal,
+                                progress: data.progress,
+                                // Заменяем старую подцель на новую, пришедшую с сервера
+                                sub_goals: prevGoal.sub_goals.map(sg =>
+                                    sg.id === data.sub_goal.id ? data.sub_goal : sg
+                                )
+                            };
+                        }
+                        return prevGoal;
+                    });
+                }
+
+                // 2. Обработка события: СОЗДАНИЕ НОВОЙ ПОДЦЕЛИ
+                if (data.type === 'sub_goal_created') {
+                    // Добавляем новую подцель в открытую модалку (если она открыта)
+                    setSelectedGoal(prevGoal => {
+                        if (prevGoal && prevGoal.id === data.goal_id) {
+                            // Проверяем, нет ли уже такой подцели (защита от дублей)
+                            const isAlreadyExists = prevGoal.sub_goals.some(sg => sg.id === data.sub_goal.id);
+                            if (isAlreadyExists) return prevGoal;
+
+                            return {
+                                ...prevGoal,
+                                sub_goals: [...prevGoal.sub_goals, data.sub_goal]
+                            };
+                        }
+                        return prevGoal;
+                    });
+
+                    // На всякий случай обновляем общий список целей
+                    // (вдруг прогресс цели зависит от количества подцелей)
+                    fetchGoals();
+                }
+            }
+        });
+
+        // При размонтировании только отписываемся от КАНАЛА, но не рвем соединение
+        return () => {
+            subscription.unsubscribe();
+        };
     }, []);
 
     // Вход

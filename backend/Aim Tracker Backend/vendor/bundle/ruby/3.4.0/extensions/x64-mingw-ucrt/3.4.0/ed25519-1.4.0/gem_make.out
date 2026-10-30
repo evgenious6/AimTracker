@@ -1,0 +1,32 @@
+current directory: C:/Users/User/Desktop/Aim Tracker/backend/Aim Tracker Backend/vendor/bundle/ruby/3.4.0/gems/ed25519-1.4.0/ext/ed25519_ref10
+C:/Ruby34-x64/bin/ruby.exe extconf.rb
+checking for whether -Wall is accepted as CFLAGS... yes
+checking for whether -O3 is accepted as CFLAGS... yes
+checking for whether -pedantic is accepted as CFLAGS... yes
+checking for whether -std=c99 is accepted as CFLAGS... no
+creating Makefile
+
+current directory: C:/Users/User/Desktop/Aim Tracker/backend/Aim Tracker Backend/vendor/bundle/ruby/3.4.0/gems/ed25519-1.4.0/ext/ed25519_ref10
+make DESTDIR\= sitearchdir\=./.gem.20261030-8048-7g0b0i sitelibdir\=./.gem.20261030-8048-7g0b0i clean
+
+current directory: C:/Users/User/Desktop/Aim Tracker/backend/Aim Tracker Backend/vendor/bundle/ruby/3.4.0/gems/ed25519-1.4.0/ext/ed25519_ref10
+make DESTDIR\= sitearchdir\=./.gem.20261030-8048-7g0b0i sitelibdir\=./.gem.20261030-8048-7g0b0i
+generating ed25519_ref10-x64-mingw-ucrt.def
+compiling ed25519_ref10.c
+compiling fe.c
+compiling ge.c
+compiling keypair.c
+compiling open.c
+compiling sc_muladd.c
+compiling sc_reduce.c
+compiling sha512.c
+compiling sign.c
+compiling verify.c
+linking shared-object ed25519_ref10.so
+
+current directory: C:/Users/User/Desktop/Aim Tracker/backend/Aim Tracker Backend/vendor/bundle/ruby/3.4.0/gems/ed25519-1.4.0/ext/ed25519_ref10
+make DESTDIR\= sitearchdir\=./.gem.20261030-8048-7g0b0i sitelibdir\=./.gem.20261030-8048-7g0b0i install
+/usr/bin/install -c -m 0755 ed25519_ref10.so ./.gem.20261030-8048-7g0b0i
+
+current directory: C:/Users/User/Desktop/Aim Tracker/backend/Aim Tracker Backend/vendor/bundle/ruby/3.4.0/gems/ed25519-1.4.0/ext/ed25519_ref10
+make DESTDIR\= sitearchdir\=./.gem.20261030-8048-7g0b0i sitelibdir\=./.gem.20261030-8048-7g0b0i clean

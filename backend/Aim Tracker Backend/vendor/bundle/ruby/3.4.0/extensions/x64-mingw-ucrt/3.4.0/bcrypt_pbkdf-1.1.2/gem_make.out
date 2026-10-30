@@ -1,0 +1,23 @@
+current directory: C:/Users/User/Desktop/Aim Tracker/backend/Aim Tracker Backend/vendor/bundle/ruby/3.4.0/gems/bcrypt_pbkdf-1.1.2/ext/mri
+C:/Ruby34-x64/bin/ruby.exe extconf.rb
+creating Makefile
+
+current directory: C:/Users/User/Desktop/Aim Tracker/backend/Aim Tracker Backend/vendor/bundle/ruby/3.4.0/gems/bcrypt_pbkdf-1.1.2/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20261030-8048-rodjun sitelibdir\=./.gem.20261030-8048-rodjun clean
+
+current directory: C:/Users/User/Desktop/Aim Tracker/backend/Aim Tracker Backend/vendor/bundle/ruby/3.4.0/gems/bcrypt_pbkdf-1.1.2/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20261030-8048-rodjun sitelibdir\=./.gem.20261030-8048-rodjun
+generating bcrypt_pbkdf_ext-x64-mingw-ucrt.def
+compiling bcrypt_pbkdf.c
+compiling bcrypt_pbkdf_ext.c
+compiling blowfish.c
+compiling explicit_bzero.c
+compiling hash_sha512.c
+linking shared-object bcrypt_pbkdf_ext.so
+
+current directory: C:/Users/User/Desktop/Aim Tracker/backend/Aim Tracker Backend/vendor/bundle/ruby/3.4.0/gems/bcrypt_pbkdf-1.1.2/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20261030-8048-rodjun sitelibdir\=./.gem.20261030-8048-rodjun install
+/usr/bin/install -c -m 0755 bcrypt_pbkdf_ext.so ./.gem.20261030-8048-rodjun
+
+current directory: C:/Users/User/Desktop/Aim Tracker/backend/Aim Tracker Backend/vendor/bundle/ruby/3.4.0/gems/bcrypt_pbkdf-1.1.2/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20261030-8048-rodjun sitelibdir\=./.gem.20261030-8048-rodjun clean
